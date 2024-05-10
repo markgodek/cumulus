@@ -30,5 +30,5 @@ RUN apt-get -qq -y autoremove && \
     rm -rf /var/lib/apt/lists/* /var/log/dpkg.log
 
 RUN chmod a+rx /software/monitor_script.sh
-ENV PATH=/software:/software/cellranger-8.0.0:$PATH
+ENV PATH=/software:/software/cellranger-8.0.0:/usr/local/aws-cli/v2/current/bin:$PATH
 ENV TMPDIR=/tmp

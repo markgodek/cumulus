@@ -47,4 +47,4 @@ RUN apt-get -qq -y remove gnupg && \
 
 RUN chmod a+rx /software/*
 
-ENV PATH=/software:/software/cumulus_feature_barcoding-0.11.3:$PATH
+ENV PATH=/software:/software/cumulus_feature_barcoding-0.11.3:/usr/local/aws-cli/v2/current/bin:$PATH

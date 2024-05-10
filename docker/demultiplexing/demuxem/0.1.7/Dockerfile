@@ -51,4 +51,4 @@ RUN mkdir /software
 ADD https://raw.githubusercontent.com/lilab-bcb/cumulus/master/docker/monitor_script.sh /software
 RUN chmod a+rx /software/monitor_script.sh
 
-ENV PATH=/software:$PATH
+ENV PATH=/software:/usr/local/aws-cli/v2/current/bin:$PATH

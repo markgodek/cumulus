@@ -38,9 +38,9 @@ workflows:
     testParameterFiles:
       - /test/dummy.json
     authors:
-      - name: Cumulus Team
-        email: cumulus-support@googlegroups.com
-        affiliation: Genentech
+      - name: Mark Godek
+        email: markgodek@gmail.com
+        affiliation: MIT
     filters:
       tags:
         - /.*/

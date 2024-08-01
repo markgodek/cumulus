@@ -103,6 +103,7 @@ workflow starsolo_workflow {
             awsQueueArn = awsQueueArn,
             backend = backend,
             config_version = config_version,
+            star_version = star_version,
     }
 
     if (length(generate_count_config.sample_ids) > 0) {
@@ -173,9 +174,16 @@ task generate_count_config {
         String awsQueueArn
         String backend
         String config_version
+        String star_version
     }
 
     command {
+        echo "STAR version:"~{star_version} >> myLog.log
+        echo "Output directory:"~{output_dir} >> myLog.log
+        echo "Input csv file:"~{input_csv_file} >> myLog.log
+        cat ~{input_csv_file} >> myLog.log
+        gsutil mv myLog.log gs://godek-demo-bucket/WDLdev/output
+
         set -e
         export TMPDIR=/tmp
 

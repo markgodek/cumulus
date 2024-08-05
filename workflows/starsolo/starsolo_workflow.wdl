@@ -162,6 +162,17 @@ workflow starsolo_workflow {
         Array[String]? count_outputs = starsolo_count.output_count_directory
     }
 
+    call move_file{
+        input:
+            input_csv_file = input_csv_file,
+            output_dir = output_directory_stripped,
+            zones = zones,
+            preemptible = preemptible,
+            awsQueueArn = awsQueueArn,
+            backend = backend,
+            config_version = config_version,
+            star_version = star_version,        
+    }
 }
 
 task generate_count_config {
@@ -174,16 +185,9 @@ task generate_count_config {
         String awsQueueArn
         String backend
         String config_version
-        String star_version
     }
 
     command {
-        echo "STAR version:"~{star_version} >> myLog.log
-        echo "Output directory:"~{output_dir} >> myLog.log
-        echo "Input csv file:"~{input_csv_file} >> myLog.log
-        cat ~{input_csv_file} >> myLog.log
-        #gsutil mv myLog.log gs://godek-demo-bucket/WDLdev/output
-
         set -e
         export TMPDIR=/tmp
 
@@ -249,6 +253,33 @@ task generate_count_config {
 
     runtime {
         docker: "~{docker_registry}/config:~{config_version}"
+        zones: zones
+        preemptible: preemptible
+        queueArn: awsQueueArn
+    }
+}
+
+task move_file {
+    input {
+        File input_csv_file
+        String star_version
+        String output_dir
+    }
+
+    command {
+        echo "STAR version:"~{star_version} >> myLog.log
+        echo "Output directory:"~{output_dir} >> myLog.log
+        echo "Input csv file:"~{input_csv_file} >> myLog.log
+        cat ~{input_csv_file} >> myLog.log
+        gsutil cp myLog.log ~{output_dir}
+    }
+
+    output {
+        String out = stdout()
+    }
+
+    runtime {
+        docker: "ctzouana/cutadapt7:latest"
         zones: zones
         preemptible: preemptible
         queueArn: awsQueueArn

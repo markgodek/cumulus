@@ -273,7 +273,7 @@ task move_file {
         echo "Output directory:"~{output_dir} >> myLog.log
         echo "Input csv file:"~{input_csv_file} >> myLog.log
         cat ~{input_csv_file} >> myLog.log
-        gsutil cp myLog.log ~{output_dir}
+        gsutil cp myLog.log ~{output_dir}/myLog.log
     }
 
     output {

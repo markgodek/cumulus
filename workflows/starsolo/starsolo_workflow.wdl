@@ -103,7 +103,6 @@ workflow starsolo_workflow {
             awsQueueArn = awsQueueArn,
             backend = backend,
             config_version = config_version,
-            star_version = star_version,
     }
 
     if (length(generate_count_config.sample_ids) > 0) {

@@ -182,7 +182,7 @@ task generate_count_config {
         echo "Output directory:"~{output_dir} >> myLog.log
         echo "Input csv file:"~{input_csv_file} >> myLog.log
         cat ~{input_csv_file} >> myLog.log
-        gsutil mv myLog.log gs://godek-demo-bucket/WDLdev/output
+        #gsutil mv myLog.log gs://godek-demo-bucket/WDLdev/output
 
         set -e
         export TMPDIR=/tmp
@@ -243,6 +243,7 @@ task generate_count_config {
         Map[String, String] sample2dir = read_map('sample2dir.txt')
         Map[String, String] sample2genome = read_map('sample2genome.txt')
         Map[String, String] sample2assay = read_map('sample2assay.txt')
+        File myLog = "myLog.log"
     }
 
     runtime {

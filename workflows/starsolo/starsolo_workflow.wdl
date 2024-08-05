@@ -264,11 +264,11 @@ task move_file {
         File input_csv_file
         String output_dir
         String zones
-        String docker_registry
         Int preemptible
         String awsQueueArn
         String backend
         String config_version
+        String star_version
     }
 
     command {

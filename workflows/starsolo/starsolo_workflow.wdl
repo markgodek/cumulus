@@ -262,8 +262,13 @@ task generate_count_config {
 task move_file {
     input {
         File input_csv_file
-        String star_version
         String output_dir
+        String zones
+        String docker_registry
+        Int preemptible
+        String awsQueueArn
+        String backend
+        String config_version
     }
 
     command {

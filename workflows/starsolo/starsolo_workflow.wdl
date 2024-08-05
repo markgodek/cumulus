@@ -246,8 +246,6 @@ task generate_count_config {
         Map[String, String] sample2dir = read_map('sample2dir.txt')
         Map[String, String] sample2genome = read_map('sample2genome.txt')
         Map[String, String] sample2assay = read_map('sample2assay.txt')
-        File myLog = "myLog.log"
-        File myOtherOut = "gs://~{output_dir}/myLog.log"
     }
 
     runtime {
